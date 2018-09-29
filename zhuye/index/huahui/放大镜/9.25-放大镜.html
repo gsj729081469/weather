@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>放大镜</title>
+</head>
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		box-sizing: border-box;
+	}
+	.boxl {
+		width: 300px;
+		height: 300px;
+		border: 1px solid #000;
+		float: left;
+		margin: 100px 20px 0 100px;
+		position: relative;
+		position: relative;
+        cursor: move;
+	}
+	.boxr {
+		width: 300px;
+		height: 300px;
+		border: 1px solid #000;
+		margin-top: 100px;
+		float: left;
+		position: relative;
+        overflow: hidden;
+	}
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+	.cover {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100px;
+		height: 100px;
+		background: rgba(0,0,0,0.3);
+		cursor: move;
+		display: none;
+	}
+	.opcity{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 999;
+	}
+	 .boxr img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+</style>
+<body>
+	
+	<div class="boxl">
+		<div class="opcity"></div>
+			<img src="img/315456.jpg">
+		<div class="cover"></div>
+	</div>
+	
+	<div class="boxr">
+		<img src="img/315456.jpg">
+	</div>
+</body>
+</html>
+<script src="./jquery-3.3.1.js"></script>
+<script>
+	$(".boxl").mouseover(function(){
+		$(".cover").show();
+	})
+	$(".boxl").mouseout(function(){
+		$(".cover").hide();
+	})
+	let maxwidth = $(".boxl").width() - $(".cover").width();
+	let maxheight = $(".boxl").height() - $(".cover").height();
+	// $(".cover").mousedown(function(e){
+	// 	let oldx = e.offsetX;
+	// 	let oldy = e.offsetY;
+	// 	console.log(oldx,oldy);
+	// 	$(".cover").mouseover(function(e){
+	// 		let newx = e.offsetX;
+	// 		let newy = e.offsetY;
+	// 		let mx = newx - oldx;
+	// 		let my = newy - oldy;
+	// 		$(".cover").css({"left":mx+"px","top":my+"px"});
+	// 	})
+	// })
+	// $(".cover").on('mousedown',function(e){
+	// 	let oldx = e.offsetX;
+	// 	let oldy = e.offsetY;
+	// 	$(".cover").on('mouseover',function(e){
+	// 		let newx = e.offsetX;
+	// 		let newy = e.offsetY;
+	// 		let mx = newx - oldx;
+	// 		let my = newy - oldy;
+	// 		$(".cover").css({"left":mx+"px","top":my+"px"});
+	// 	})
+	// })
+	//1.遮罩跟着鼠标移动
+    $(".boxl").mousemove(function (e) {
+        let mx=e.offsetX-50;
+        let my=e.offsetY-50;
+        if (mx>=maxwidth){
+            mx=maxwidth;
+        }
+        if(mx<0){
+            mx=0;
+        }
+        if(my>=maxheight){
+            my=maxheight;
+        }
+        if (my<0){
+            my=0;
+        }
+        $(".cover").css({'left':mx+"px",'top':my+"px"});
+			 //2.右侧图片方法和位置移动
+        let scales=3;
+        let widths=$(".boxr").width();
+        let heights=$(".boxr").height();
+        $(".boxr img").css({"width":widths*scales+"px","height":heights*scales+"px",'left':-scales*mx+"px",'top':-scales*my+"px"})
+		// })
+	})
+	 // $(".pointer").on('mousedown',function (e) {
+  //       let oldx=e.offsetX
+  //   })
+</script>

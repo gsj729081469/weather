@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>按序加载</title>
+    <script src="../animate.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        .header{
+            /*position: fixed;*/
+            left: 0;
+            top: 0;
+            width:100%;
+            height: 100px;
+            background-color: #000;
+            z-index:99;
+        }
+        .header h1{
+            letter-spacing: 200px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 40px;
+        }
+        .header .h-nav{
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: red;
+            transition:.3s;
+        }
+        .header .h-nav.on{
+            top:0;
+        }
+        .main{
+            /*position: relative;*/
+            width:1260px;
+            /*height: 2000px;*/
+            margin:0 auto;
+            margin-top: 300px;
+            /* height: 600px; */
+            background-color: pink;
+        }
+        .img-box{
+            width:100%;
+            margin-bottom: 100px;
+        }
+        .img-box >img{
+            width:300px;
+            height: 200px;
+        }
+        .main .sidebar{
+            overflow: hidden;
+            position: fixed;
+            left: 0px;
+            top: 40%;
+            width: 0;
+            background-color: #ccc;
+            transition:.3s;
+        }
+        .main .sidebar p{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            cursor:pointer;
+        }
+        .footer{
+            width:100%;
+            height: 100px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>我是头部</h1>
+        <div class="h-nav"></div>
+    </div>
+    <div class="main">
+        <div class="img-box">
+            <h1>生活</h1>
+            <img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt=""> 
+            <img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            
+        </div>
+        <div class="img-box">
+            <h1>服饰</h1>
+            <img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+          
+        </div>
+        <div class="img-box">
+            <h1>居家</h1>
+            <img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+           
+        </div>
+        <div class="img-box">
+            <h1>户外</h1>
+            <img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+           
+        </div>
+        <div class="img-box">
+            <h1>喜欢</h1>
+            <img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+           
+        </div>
+
+        <div class="sidebar">
+            <p class="">生活</p>
+            <p class="">服饰</p>
+            <p class="">居家</p>
+            <p class="">户外</p>
+            <p class="">喜欢</p>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+</body>
+</html>
+
+<!-- <script>
+    //for
+
+    let aImgBox = document.querySelectorAll('.img-box'),
+        aSideBar = document.querySelectorAll('.sidebar > p'),
+        oSideBar  = document.querySelector('.sidebar'),
+        arr = [],
+        colorArr = ['red','green','blue','#f60','pink'];
+
+    for(let i=0;i<aImgBox.length;i++){
+        arr.push(aImgBox[i].offsetTop);
+    }
+    console.log(arr)
+    window.onscroll = function(){
+        let bodyTop = document.body.scrollTop || document.documentElement.scrollTop;
+        
+        for(let i=0;i<arr.length;i++){
+            
+            let imgs = aImgBox[i].querySelectorAll('img');
+            // console.log(imgs)
+            if(bodyTop >= arr[i]){
+                oSideBar.style.width = '50px';
+            }
+            // else{
+            //     oSideBar.style.width = '0px';
+            // }
+           if(bodyTop >= arr[i]){
+               for(let k=0;k<imgs.length;k++){
+                   let url = imgs[k].getAttribute('intImg');
+                   imgs[k].setAttribute('src',url);
+               }
+           } 
+        }
+    }
+    //点击
+    for(let i=0;i<aSideBar.length;i++){
+        aSideBar[i].onclick = function(){
+            animate(document.body,{scrollTop:arr[i]});
+            animate(document.documentElement,{scrollTop:arr[i]});
+            for(let j=0;j<aSideBar.length;j++){
+                aSideBar[j].style.backgroundColor = '';
+            }
+            this.style.backgroundColor = colorArr[i];
+        }
+    }
+</script> -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    /*
+        按需加载
+            1.当页面滚动到一定位置时，让当前位置的图片在进行加载
+            2.获取滚动条的位置，并把每一个板块的offset push到数组中
+            3.判断滚动条位置，大于等于当前板块  bodyTop >= arr[index]
+            4.获取当前位置的所有图片  img[index].querySelector('img')
+            5.获取每一张图片的自定义属性值，设置到src上
+
+        楼层跳转
+            1.点击某个楼层时，页面滚动到对应的位置 animate(bodyTop,{scrollTop:arr[index]})
+        优化
+            1.当页面滚动到一定位置时，在让左侧列表和顶部搜索出现
+            2.改变左侧列表的选中颜色colorarr = [];
+        */
+//    let aImgBox = document.querySelectorAll('.img-box'),
+//        aSideBar = document.querySelectorAll('.sidebar > p'),
+//        oSideBar  = document.querySelector('.sidebar'),
+    let arr = [],
+        colorArr = ['red','green','blue','#f60','pink'];
+        //将每个板块的offset存到数组里
+//        aImgBox.forEach( (val,index)=>{
+//            arr.push( aImgBox[index].offsetTop );
+            
+//        } )
+
+        $('.img-box').each(function(index,value){
+            arr.push($(value).offset().top )
+        })
+        $(window).scroll(function(){
+            let bodyTop = $(document).scrollTop();
+            if(bodyTop >= 500){
+                $('.sidebar').css('width','50px');
+            }else{
+                $('.sidebar').css('width','0');
+            }
+            $.each(arr,function(index,val){
+                if(bodyTop + $(window).innerHeight()/2 >= val){
+                    $('.sidebar p').eq(index).css('background',colorArr[index]).siblings().css('background','#ccc');
+                    let imgs = $('.img-box').eq(index).children('img');
+                    console.log(imgs)
+                    imgs.each(function(i,v){
+                        let url = $(v).attr('intImg');
+                        $(v).attr('src',url);
+                    })
+                }
+            });
+        })
+
+        $(".sidebar p").click(function(){
+            $(this).css("background",colorArr[$(this).index()]).siblings().css("background","#ccc");
+//            console.log($(this).index())
+            $("html").animate({scrollTop:arr[$(this).index()]});
+
+        });
+
+
+//        window.onscroll = function(){
+//            bodyTop = document.body.scrollTop || document.documentElement.scrollTop;
+//            if(bodyTop >= 500){
+//                oSideBar.style.width = '50px';
+//            }else{
+//                oSideBar.style.width = 0;
+//            }
+//            //遍历arr数组，并获取每个版块的图片
+//            arr.forEach( (val,index)=>{
+//                let imgs = aImgBox[index].querySelectorAll('img');
+//                // console.log(imgs)
+//                //如果滚动条高度大于版块距离顶部的高度，更换src
+//                if(bodyTop + innerHeight/2>= val){
+//                    imgs.forEach( (img)=>{
+//                        let url = img.getAttribute('intImg');
+//                        // img.setAttribute('src',url);
+//                        img.src = url;
+//
+//                    })
+//                     for(let i=0;i<aSideBar.length;i++){
+//                        aSideBar[i].style.backgroundColor = '';
+//                    }
+//                    aSideBar[index].style.backgroundColor = colorArr[index];
+//                }
+//            })
+//        }
+
+        //楼层跳转
+//        aSideBar.forEach( (val,index)=>{
+//            //每个版块点击的时候改变滚动条的位置到对应版块
+//            val.onclick = function(){
+//                animate(document.body,{scrollTop:arr[index]},function(){
+//                    for(let i=0;i<aSideBar.length;i++){
+//                        aSideBar[i].style.backgroundColor = '';
+//                    }
+//                    aSideBar[index].style.backgroundColor = colorArr[index];
+//                })
+//                animate(document.documentElement,{scrollTop:arr[index]},function(){
+//                    for(let i=0;i<aSideBar.length;i++){
+//                        aSideBar[i].style.backgroundColor = '';
+//                    }
+//                    aSideBar[index].style.backgroundColor = colorArr[index];
+//                })
+//
+//            }
+//        })
+</script>

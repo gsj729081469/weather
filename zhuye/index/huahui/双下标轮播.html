@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画插件的引用--左右轮播图/双下表轮播</title>
+</head>
+<body>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.banner{
+			width: 1226px;
+			height: 460px;
+			margin: 100px auto 0;
+			position: relative;
+			background: #ccc;
+			overflow: hidden;
+		}
+		.banner img{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 1226px;
+			/* transition: .3s; */
+		}
+		.dots{
+			width: 110px;
+			height: 10px;
+			position: absolute;
+			right: 35px;
+			bottom: 27px;
+			/* background: red; */
+			display: flex;
+			justify-content: space-between;
+		}
+		.dots span{
+			display: block;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: #fff;
+		}
+		.dots span.active{
+			background: #ff6700;
+		}
+		.prev,.next{
+			width: 30px;
+			height: 50px;
+			background: #000;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin: auto 0;
+		}
+		.prev{
+			left: 0;
+		}
+		.next{
+			right: 0;
+		}
+	</style>
+	<div class="banner">
+		<img src="https://i1.mifile.cn/a4/xmad_15366295535107_lUIRb.jpg" alt="">
+		<img src="https://i1.mifile.cn/a4/xmad_15332803104112_LtKUd.jpg" alt="">
+		<img src="https://i1.mifile.cn/a4/xmad_15338982677936_eQTJk.jpg" alt="">
+		<img src="https://i1.mifile.cn/a4/xmad_15366394578434_ZwneT.jpg" alt="">
+		<img src="https://i1.mifile.cn/a4/xmad_15357307990199_HfpnA.jpg" alt="">
+		<div class="dots">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div class="prev"></div>
+		<div class="next"></div>
+	</div>
+	<!-- <script src="../js/animate.js"></script>
+	<script src='../js/tools.js'></script> -->
+	<script src="./放大镜/jquery-3.3.1.js"></script>
+	<script>
+		let widths=$(".banner").innerWidth();
+		let timer;
+		timer=setInterval(move,1500);
+		$(".banner img").eq(0).css("left",0);
+		$(".dots span").eq(0).addClass("active");
+		let next=0;
+		let now=0;
+		//自动轮播函数
+		function move(){
+			next++;
+			if(next==$(".banner img").length){
+				next=0;
+			}
+			$(".banner img").eq(next).css("left",widths);
+			$(".banner img").eq(now).animate({"left":-widths});
+			$(".banner img").eq(next).animate({"left":0});
+			$(".dots span").eq(next).addClass("active").siblings().removeClass("active");
+			now=next;
+		}
+		function moveL(){
+			next--;
+			if(next<0){
+				next=$(".banner img").length-1;
+			}
+			$(".banner img").eq(next).css("left",-widths);
+			$(".banner img").eq(now).animate({"left":widths});
+			$(".banner img").eq(next).animate({"left":0});
+            $(".dots span").eq(next).addClass("active").siblings().removeClass("active");
+			now=next;
+		}
+		//鼠标移入移出禁止开始自动轮播
+		$(".banner").hover(function(){
+			clearInterval(timer);
+		},function(){
+			timer=setInterval(move,1500);
+		});
+		//轮播点的点击事件
+		$(".dots span").click(function(){
+			console.log(1);
+			$(".banner img").eq($(this).index()).css("left",0).siblings("img").css("left",widths);
+			now=$(this).index();
+			next=$(this).index();
+		});
+		$(".next").click(function(){
+			move();
+		});
+		$(".prev").click(function(){
+			moveL();
+		});
+	</script>
+</body>
+</html>

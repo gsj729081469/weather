@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		/* html{
+			transition: .9s;
+		} */
+		.container{
+			margin: 0 auto;
+			width: 1226px;
+			height: auto;
+		}
+		section{
+			margin-bottom: 20px;
+			/* background: yellow; */
+			width: 100%;
+			height: auto;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-content: space-between;
+		}
+		section>img{
+			/* background: red; */
+			flex-shrink: 0;
+			width: 234px;
+			height: 300px;
+			margin-bottom: 10px;
+		}
+		section>img:nth-child(n+5){
+			margin-bottom: 0;
+		}
+		header{
+			width: 100%;
+			height: 80px;
+			/* background: #000; */
+			margin-bottom: 40px;
+		}
+		footer{
+			width: 100%;
+			height: 80px;
+			/* background: #000; */
+			margin-top: 40px;
+		}
+		.fixed{
+			width: 40px;
+			height: auto;
+			position: fixed;
+			bottom: 120px;
+			left: -40px;
+			text-align: center;
+			line-height: 40px;
+			transition: .3s;
+		}
+		.fixed>div{
+			width: 100%;
+			height: 40px;
+			margin-bottom: 10px;
+			background: #ccc;
+			cursor:pointer;
+		}
+		.fixed>div.active{
+			background: #ff6700;
+		}
+		.backTop{
+			width: 40px;
+			height: 40px;
+			/* background: #ccc; */
+			position: fixed;
+			bottom: 70px;
+			left: -40px;
+			transition: .3s;
+			cursor:pointer;
+		}
+		.backTop>img{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<header></header>
+	<div class="container">
+		<section>
+			<img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+			<img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+		</section>
+		<section>
+			<img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+			<img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+		</section>
+		<section>
+			<img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+			<img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+		</section>
+		<section>
+			<img intImg="img/1.jpg" alt="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/1.jpg" alt="" src="">
+            <img intImg="img/2.jpg" alt="">
+            <img intImg="img/3.jpg" alt="">
+			<img intImg="img/3.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+            <img intImg="img/4.jpg" alt="">
+		</section>
+	</div>
+	<div class="fixed">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+	</div>
+	<div class="backTop">
+		返回顶部
+	</div>
+	<footer></footer>
+	<!-- <script src="js/animate.js"></script> -->
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		let color_arr=["#f10215","#ff6600","#ff6700","#ff6900"];
+		//数组用于保存每个模块的高度
+		let arr_top=[];
+		//循环的向数组中添加每个模块的高度
+		$("section").each(function(index,val){
+			//val不是jQuery对象,无法使用jQuery方法
+			arr_top.push($(val).offset().top);
+		});
+
+		$(window).scroll(function(){
+			//实时检测滚动条的高度
+			let bodyTop=$(document).scrollTop();
+			if(bodyTop+$(window).innerHeight()/2>arr_top[1]){
+				$(".fixed").css("left","10px");
+				$(".backTop").css("left","10px");
+			}else if(bodyTop+$(window).innerHeight()/2<arr_top[1]){
+				$(".fixed").css("left","-40px");
+				$(".backTop").css("left","-40px");
+			}
+			$.each(arr_top,function(index,val){
+				if(bodyTop+$(window).innerHeight()/2>val){
+					$(".fixed div").eq(index).css("background",color_arr[index]).siblings().css("background","#ccc");
+
+					let imgs=$("section").eq(index).children('img');
+					imgs.each(function(index1,val1){
+						let nsrc=$(val1).attr("intImg");
+						$(val1).attr("src",nsrc);
+					});
+				}
+			});
+			
+		});
+		//楼层
+		$(".fixed div").click(function(){
+			$(this).css("background",color_arr[$(this).index()]).siblings().css("background","#ccc");
+				
+			$("html").animate({scrollTop:arr_top[$(this).index()]});
+					
+		});
+		//返回顶部
+		$(".backTop").click(function(){
+			$("html").animate({scrollTop:0});
+		});
+		
+	</script>
+</body>
+</html>

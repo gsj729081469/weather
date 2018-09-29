@@ -1,0 +1,251 @@
+* {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+/*header*/
+
+.header {
+	width: 100%;
+	height: 80px;
+	background-color: #ffffff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.header .header1 {
+	width: 1190px;
+	height: 80px;
+	/*background-color: blue;*/
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.header1 .header-left {
+	float: left;
+	margin-top: 10px;
+}
+
+.header1 ul .header-right {
+	float: right;
+	color: #2A333C;
+	width: 86px;
+	height: 80px;
+	line-height: 80px;
+}
+
+.header1 ul .header-right:hover {
+	color: rgb(22,176,220);
+}
+.header .header1 ul li .header-right.m {
+	color: rgb(22,176,220);
+}
+
+
+.list {
+	width: 100%;
+	height: 1050px;
+	background-color: #f1f1f1;
+}
+
+.list h1 {
+	color: #f67a9f;
+	font-size: 38px;
+	text-align: center;
+	padding-top: 120px;
+	font-weight: normal;
+}
+
+.list .list-left {
+	margin-left: 90px;
+	width: 782px;
+	background-color: #ffffff;
+	/*height: 750px;*/
+	margin-top: 76px;
+	float: left;
+	position: relative;
+}
+
+.list-left .left {
+	width: 700px;
+	height: 80px;
+	/*background-color: red;*/
+	margin: 0 auto;
+	margin-top: 24px;
+	/*box-sizing: border-box;*/
+	border-bottom: 1px solid #e4eaec;
+	/*float: left;*/
+}
+
+.time{
+	color: #ccc;
+	/*padding-left: 680px;*/
+	/*margin-top: -50px;*/
+	float: right;
+}
+
+
+.l1 {
+	color: #884772;
+	font-size: 16px;
+	margin-left: 40px;
+}
+
+.l2 {
+	color: #76a5d4;
+	font-size: 14px;
+	margin-left: 40px;
+}
+
+.l3 {
+	font-size: 14px;
+	color: #e4eaec;
+	float: right;
+	margin-top: -40px;
+}
+
+
+.jiazai {
+	height: 35px;
+	width: 722px;
+	background-color: #e4eaec;
+	margin: 0 auto;
+	margin-top: 30px;
+	text-align: center;
+}
+
+
+.gengduo {
+	color: #9da2a7;
+	font-size: 16px;
+	line-height: 35px;
+	height: 35px;
+	width: 722px;
+}
+/*右推荐*/
+
+.right {
+	width: 361px;
+	height: 458px;
+	margin-left: 30px;
+	background-color: white;
+	float: left;
+	margin-top: 76px;
+}
+
+.right .li {
+	width: 302px;
+	height: 350px;
+	margin: 0 auto;
+	margin-top: 30px;
+	/*background-color: red;*/
+}
+
+.name {
+	height: 36px;
+	width: 300px;
+	border: 1px solid #e4eaec;
+	padding-left: 20px;
+	box-sizing: border-box;
+	margin-bottom: 22px;
+}
+
+/*input中placholder的默认文字样式*/
+input::-webkit-input-placeholder{
+	color: #a3afb7;
+}
+
+
+.yzm {
+	height: 36px;
+	width: 189px;
+	border: 1px solid #e4eaec;
+	padding-left: 20px;
+	box-sizing: border-box;
+	margin-bottom: 22px;
+}
+.yanzheng {
+	width: 111px;
+	height: 36px;
+	background-color: #f3f7f9;
+	display: inline-block;
+	text-align: center;
+	line-height: 36px;
+	float: right;
+}
+
+.tijiao {
+	width: 300px;
+	height: 36px;
+	background-color: #89bceb;
+	color: white;
+	outline: none;
+	cursor: pointer;
+}
+.textt{
+	width: 300px;
+	text-align: center;
+	font-size: 14px;
+	color: #444;
+	margin-bottom: 10px;
+}
+.textt span{
+	color: red;
+}
+
+
+
+/*进制文本域缩放*/
+/*resize:none;*/
+
+
+
+
+
+
+
+
+
+
+/*foot*/
+
+.foot {
+	width: 100%;
+	height: 161px;
+	background-color: #f5f5f5;
+	margin-top: 10px;
+	padding-top: 18px;
+	box-sizing: border-box;
+}
+
+.foot .foot1 {
+	height: 125px;
+	width: 364px;
+	margin: 0 auto ;
+	/*margin-top: 18px;*/
+	/*background-color: red;*/
+}
+
+.foot .foot1 .foot1-1 {
+	text-align: center;
+}
+
+.foot1-2 {
+	color: #62a8ea;
+	font-size: 14px;
+}
+
+.foot1-3 {
+	color: #c4b1aa;
+	font-size: 14px;
+	text-align: center;
+}

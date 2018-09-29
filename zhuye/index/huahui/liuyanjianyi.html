@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>留言建议</title>
+	<link rel="stylesheet" type="text/css" href="./css/liuyanjianyi.css">
+	<link rel="stylesheet" type="text/css" href="./css/iconfont.css">
+	<!-- <script src="./js/jy.js"></script> -->
+</head>
+<body>
+	<div class="header">
+		<div class="header1">
+			<!-- <a href="#" class="header-left">
+				<img src="./images/logo.png">
+			</a> -->
+			<ul>
+				<li><a href="guanyusuxin.html" class="header-right">关于素馨</a></li>
+				<li><a href="liuyanjianyi.html" class="header-right m">留言建议</a></li>
+				<li><a href="" class="header-right">素馨花艺</a></li>
+				<li><a href="suxindongtai.html" class="header-right">素馨动态</a></li>
+				<li><a href="huayanhuayu.html" class="header-right">花言花语</a></li>
+				<li><a href="index.html" class="header-right">网站首页</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 列表 -->
+
+
+	<div class="list">
+		<h1>留言建议</h1>
+
+		<!-- left -->
+
+		<div class="list-left">
+
+			<!-- pingjia -->
+			<!-- <i class="iconfont icon-renwu"></i> -->
+			<div class="left">
+				<p class="l1">${name}</p>
+				<p class="l2">${con}</p>
+				<div class="time"><span></span>-<span></span>-<span></span> <span></span>:<span></span>:
+				<span></span>
+				</div>
+			</div>
+						<!-- pingjia -->
+			<!-- pingjia -->
+
+			<!-- pingjia -->
+			<!-- <div class="jiazai">
+				<button class="gengduo">
+					<a href="">加载更多</a>
+				</button>
+			</div> -->
+		</div>
+	<!-- 右 -->
+
+		<div class="right">
+			<div class="li">
+				<input type="text" name=""
+				placeholder="姓名" class="name">
+				<!-- <input type="text" name=""
+				placeholder="联系电话" class="name"> -->
+				<textarea placeholder="您的建议" cols="37" rows="10" style="border: 1px solid #e4eaec; padding-left: 20px;box-sizing: border-box; font-size: 14px; color: #e4eaec; resize: none;maxlength:'100';"></textarea>
+				<div class="textt">最多输入100个字，现已输入<span>0</span>个字</div>
+				<span><input type="text" name="" placeholder="验证码" class="yzm"></span>
+				<span class="yanzheng" title="看不清？点击更换验证码">B F 9 9</span>
+				<button class="tijiao">提交</button>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- foot -->
+	<div class="foot">
+		<div class="foot1">
+			<div class="foot1-1">
+				<a href="#"><i class="iconfont icon-weixin"></i></a>
+				<a href="#"><i class="iconfont icon-qq"></i></a>
+				<a href="#"><i class="iconfont icon-xinxiduanxinxiaoxitixingyoujiansixinyouxiang"></i></a>
+			</div> <br>
+			<div>
+				<a href="#" class="foot1-2">豫ICP备17021305号</a> &nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#" class="foot1-2">豫公网安备 41012202000160号</a>
+			</div> 
+			 
+			<p class="foot1-3">联系电话 0371-62180519 15890062947</p> 
+			<p class="foot1-3">郑州素馨花卉有限公司 版权所有 © 2017-2021</p>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	
+// 随着输入的内容，字数实时变化
+let	text=document.querySelector('textarea');
+let num=document.querySelector('.textt span');
+let btn=document.querySelector('button');
+let ul=document.querySelector('.list-left');
+let input=document.querySelector('input');
+let li=document.querySelector('.list-left .left');
+let spans=document.querySelectorAll('.time span');
+console.log(spans);
+// console.log(myDate);
+text.oninput=function(){
+	let textnum=this.value.length;
+	num.innerHTML=textnum;
+}
+btn.onclick=function(){
+	let name=input.value;
+	let con=text.value;
+	let str=
+			`<div class="left">
+				<p class="l1">${name}</p>
+				<p class="l2">${con}</p>
+				<div class="time"></div>
+			</div>`;
+	if(input.value!==''&& text.value!==''){
+	ul.innerHTML+=str;
+}else{
+	alert('不能为空');
+}
+	// 清空右侧留言姓名
+	input.value='';
+	text.value='';
+	num.innerHTML=0;
+}
+
+
+ul.onmouseover=function(e){
+	let event=e.target;
+	console.log(event);
+	if(event.nodeName==='LI'){
+	event.style.background='red';
+	}
+}
+ul.onmouseout=function(e){
+	let event=e.target;
+	if(event.nodeName==='LI'){
+	event.style.background='white';}
+}
+
+
+</script>
